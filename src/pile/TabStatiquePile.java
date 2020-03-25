@@ -1,44 +1,25 @@
 package pile;
 
 import java.lang.reflect.Array;
-import java.util.NoSuchElementException;
+import java.util.Iterator;
 
 public class TabStatiquePile<E> implements Pile<E> {
 	
-	private E[] tabStatique;
-	private int top;
-	private int indexCurrentElement;
+	protected E[] tab;
+	protected int top;
 
 	@SuppressWarnings("unchecked")
 	public TabStatiquePile(int size) {
 		super();
-		this.tabStatique = (E[]) Array.newInstance(Object.class, size);
+		this.tab = (E[]) Array.newInstance(Object.class, size);
 		this.top = 0; //indice du sommet
-		this.indexCurrentElement = 0; //indice de l'iteration;
-	}
-
-	@Override
-	public boolean hasNext() {
-		return this.tabStatique[indexCurrentElement] != null;
-	}
-
-	@Override
-	public E next() {
-		
-		if(!this.hasNext())
-			throw new NoSuchElementException("c'etait le dernier element");
-		
-		E nextElement = this.tabStatique[indexCurrentElement];
-		this.indexCurrentElement++;
-		
-		return nextElement;
 	}
 
 	@Override
 	public void push(E item) throws Exception {
-		if (this.top >= this.tabStatique.length)
+		if (this.top >= this.tab.length)
 			throw new Exception("Erreur pile pleine"); 
-		this.tabStatique[top] = item;
+		this.tab[top] = item;
 		this.top++;
 		
 	}
@@ -47,11 +28,12 @@ public class TabStatiquePile<E> implements Pile<E> {
 	public E pop() throws Exception {
 		if (this.isEmpty())
 			throw new Exception("Erreur pile vide"); 
-		
-		E last = this.tabStatique[this.top-1];
-		
-		this.tabStatique[this.top-1] = null;
+
 		this.top--;
+
+		E last = this.tab[this.top];
+		
+		this.tab[this.top] = null;
 		
 		return last;
 	}
@@ -61,7 +43,7 @@ public class TabStatiquePile<E> implements Pile<E> {
 		if (this.isEmpty())
 			throw new Exception("Erreur pile vide"); 
 		
-		return this.tabStatique[this.top-1];
+		return this.tab[this.top-1];
 	}
 
 	@Override
@@ -86,13 +68,25 @@ public class TabStatiquePile<E> implements Pile<E> {
 		
 	}
 
-	public E[] getTabStatique() {
-		return tabStatique;
+	@Override
+	public Iterator<E> iterator() {
+		return new Itr();
 	}
 
-	public void setTabStatique(E[] tabStatique) {
-		this.tabStatique = tabStatique;
-	}
+	private class Itr implements Iterator<E> {
+		// Variables d’instances nécessaires au parcours (par exemple l’élément courant)
+		private int indexNextFree = top;
 
-	
+		public boolean hasNext() {
+			return this.indexNextFree != 0;
+			// Traitement pour déterminer s’il y a encore des éléments à parcourir
+			// return …;
+		}
+
+		public E next() {
+			return tab[--this.indexNextFree];
+		}
+
+		// le remove() est facultatif et n’a pas de sens ici, on ne l’implémente pas
+	}
 }

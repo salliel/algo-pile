@@ -107,31 +107,4 @@ class TabStaticPileTest {
 			e.printStackTrace();
 		}
 	}
-
-	@Test
-	void testHasNext() {
-		Pile<Integer> p =  new TabStatiquePile<>(10);
-
-		try {
-			assertFalse(p.hasNext());
-			p.push(5);
-			assertTrue(p.hasNext());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	void testNext() {
-		Pile<Integer> p =  new TabStatiquePile<>(10);
-
-		try {
-			p.push(1);
-			assertEquals(1, p.next());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-
 }

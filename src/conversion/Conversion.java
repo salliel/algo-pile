@@ -1,6 +1,7 @@
 package conversion;
 
-import pile.ListeChaineePile;
+import java.util.Iterator;
+
 import pile.Pile;
 
 public class Conversion {
@@ -17,13 +18,7 @@ public class Conversion {
 			}
 			while(number > 0);
 			
-			Pile<Integer> pileIntermediaire = new ListeChaineePile<Integer>();
-			
-			while(p.hasNext()) {
-				pileIntermediaire.push(p.next());
-			}
-			
-			displayStack(pileIntermediaire);
+			displayStack(p);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,8 +29,10 @@ public class Conversion {
 
 	private static void displayStack(Pile<Integer> p) {
 		
-		while(p.hasNext()) {
-			System.out.print(p.next());
+		Iterator<Integer> it = p.iterator();
+		
+		while(it.hasNext()) {
+			System.out.print(it.next());
 		}
 		
 		newLigne();

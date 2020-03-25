@@ -2,7 +2,7 @@ package pile;
 
 import java.util.Iterator;
 
-public interface Pile<E> extends Iterator<E> {
+public interface Pile<E> extends Iterable<E> {
 
 	void push(E item) throws Exception;
 	E pop() throws Exception;

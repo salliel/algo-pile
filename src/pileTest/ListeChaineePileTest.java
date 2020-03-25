@@ -102,29 +102,4 @@ class ListeChaineePileTest {
 			e.printStackTrace();
 		}
 	}
-
-	@Test
-	void testHasNext() {
-		Pile<Integer> p = new ListeChaineePile<>();
-		try {
-			assertFalse(p.hasNext());
-			p.push(5);
-			assertTrue(p.hasNext());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	void testNext() {
-		Pile<Integer> p = new ListeChaineePile<>();
-		try {
-			p.push(1);
-			assertEquals(1, p.next());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-
 }
