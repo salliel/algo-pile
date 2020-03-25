@@ -3,12 +3,31 @@ package pile;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Classe permettant de modeliser une pile en utilsant une liste chainé
+ * 
+ * @author steeven & yossef
+ *
+ * @param <E>
+ */
 public class ListeChaineePile<E> implements Pile<E> {
 
+	/**
+	 * Classe interne permettant de définir un noeud de la liste chainé
+	 * 
+	 * @author steeven & yossef
+	 *
+	 */
 	private class Noeud {
 		E value;
 		Noeud chain;
-
+		
+		/**
+		 * contructeur
+		 * 
+		 * @param value
+		 * @param chain
+		 */
 		Noeud(E value, Noeud chain) {
 			this.value = value;
 			this.chain = chain;
@@ -19,6 +38,9 @@ public class ListeChaineePile<E> implements Pile<E> {
 	
 	private int length;
 
+	/**
+	 * constructeur
+	 */
 	public ListeChaineePile() {
 		super();
 		this.start = null;
@@ -63,14 +85,7 @@ public class ListeChaineePile<E> implements Pile<E> {
 
 	@Override
 	public void clear() {
-		while (this.start != null) {
-			try {
-				this.pop();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
+		this.start = null;
 	}
 
 	public Iterator<E> iterator() {

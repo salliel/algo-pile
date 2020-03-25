@@ -58,14 +58,7 @@ public class TabStatiquePile<E> implements Pile<E> {
 
 	@Override
 	public void clear() {
-		while (this.top > 0) {
-			try {
-				this.pop();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
+		this.top = 0;
 	}
 
 	@Override

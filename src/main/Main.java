@@ -7,8 +7,19 @@ import pile.TabDynamiquePile;
 import pile.TabStatiquePile;
 import settings.Display;
 
+/**
+ * 
+ * Classe principal du projet
+ * 
+ * @author steeven & yossef
+ *
+ */
 public class Main {
 	
+	/**
+	 * Methode permettant de lancer le projet et d'effectuer les conversions
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		Pile<Integer> p1 = new TabStatiquePile<Integer>(10);
